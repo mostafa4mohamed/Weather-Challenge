@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.devtools.ksp)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -66,4 +68,37 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
+    //dagger hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.logging.interceptor)
+    implementation(libs.converter.gson)
+
+    // For ViewModel
+    implementation(libs.androidx.lifecycle.extensions)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    //multi size ui
+    implementation(libs.sdp.android)
+    implementation(libs.ssp.android)
+
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.activity.ktx)
+
+    //room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
+    //noinspection UseTomlInstead
+    implementation ("com.android.support:multidex:1.0.3")
+
+    implementation(project(":domain"))
+    implementation(project(":data"))
+
 }
