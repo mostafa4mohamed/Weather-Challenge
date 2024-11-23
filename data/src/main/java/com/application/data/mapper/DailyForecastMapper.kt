@@ -16,7 +16,7 @@ import com.application.domain.entities.Wind
 object DailyForecastMapper {
 
     fun DailyForecastData.toRoomEntity() = DailyForecastRoomEntity(
-        city_id = this.city_id ?: 0,
+        city_name = this.city_name ?: "",
         clouds = if (this.clouds != null) CloudsRoomEntity(this.clouds!!.all) else null,
         dt = this.dt ?: 0,
         dt_txt = this.dt_txt,
@@ -50,7 +50,7 @@ object DailyForecastMapper {
     )
 
     fun DailyForecastRoomEntity.toDomainEntity() = DailyForecastData(
-        city_id = this.city_id,
+        city_name = this.city_name,
         clouds = if (this.clouds != null) Clouds(this.clouds.all) else null,
         dt = this.dt,
         dt_txt = this.dt_txt,

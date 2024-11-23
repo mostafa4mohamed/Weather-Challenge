@@ -12,6 +12,6 @@ interface DailyForecastDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(user: List<DailyForecastRoomEntity>)
 
-    @Query("SELECT * FROM DailyForecastRoomEntity WHERE city_id = :cityId")
-    suspend fun getDailyForecastByCity(cityId: Int): List<DailyForecastRoomEntity>
+    @Query("SELECT * FROM DailyForecastRoomEntity WHERE city_name = :cityName")
+    suspend fun getDailyForecastByCity(cityName:String): List<DailyForecastRoomEntity>
 }

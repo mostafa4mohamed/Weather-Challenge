@@ -1,11 +1,12 @@
 package com.application.data.room.entity
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
 
 
-@Entity(primaryKeys = ["city_id", "dt"])
+@Entity(primaryKeys = ["city_name", "dt"])
 data class DailyForecastRoomEntity(
-    @ColumnInfo var city_id: Int = 0,
+    @ColumnInfo var city_name: String = "",
     @ColumnInfo val clouds: CloudsRoomEntity? = null,
     @ColumnInfo val dt: Int = 0,
     @ColumnInfo val dt_txt: String? = null,

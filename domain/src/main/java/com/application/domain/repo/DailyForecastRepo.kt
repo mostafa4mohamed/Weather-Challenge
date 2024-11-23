@@ -6,12 +6,11 @@ import com.application.domain.entities.DailyForecastResponse
 interface DailyForecastRepo {
 
     suspend fun getDailyForecastByCityFromRemote(
-        latitude: Double,
-        longitude: Double,
+        cityName:String,
     ): DailyForecastResponse?
 
     suspend fun getDailyForecastByCityFromLocalDataBase(
-        cityId: Int,
+        cityName:String,
     ): DailyForecastResponse?
 
     suspend fun insertDailyForecastByCityToLocalDataBase(

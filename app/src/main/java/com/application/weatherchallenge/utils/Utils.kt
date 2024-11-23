@@ -21,4 +21,5 @@ object Utils {
         if (this == null) ""
         else String.format(Locale.ENGLISH, "%.2f", this)
 
+    fun String.fillImageUrl() ="https://openweathermap.org/img/wn/$this@2x.png"
 }

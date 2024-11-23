@@ -4,9 +4,7 @@ import com.application.domain.entities.DailyForecastData
 import com.application.domain.entities.DailyForecastResponse
 import com.application.domain.repo.DailyForecastRepo
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert
-import org.junit.Assert.*
-
+import org.junit.Assert.assertNull
 import org.junit.Test
 
 class InsertDailyForecastByCityInRoomUseCaseTest {
@@ -18,13 +16,12 @@ class InsertDailyForecastByCityInRoomUseCaseTest {
         //arrange
         val repo = object : DailyForecastRepo {
             override suspend fun getDailyForecastByCityFromRemote(
-                latitude: Double,
-                longitude: Double
+                cityName: String
             ): DailyForecastResponse {
                 TODO("Not yet implemented")
             }
 
-            override suspend fun getDailyForecastByCityFromLocalDataBase(cityId: Int): DailyForecastResponse {
+            override suspend fun getDailyForecastByCityFromLocalDataBase(cityName: String): DailyForecastResponse {
                 TODO("Not yet implemented")
             }
 
@@ -45,23 +42,22 @@ class InsertDailyForecastByCityInRoomUseCaseTest {
     @Test
     fun `invokeFromLocalData return success`() = runBlocking {
 
-        var action=true
+        var action = true
 
         //arrange
         val repo = object : DailyForecastRepo {
             override suspend fun getDailyForecastByCityFromRemote(
-                latitude: Double,
-                longitude: Double
+                cityName: String
             ): DailyForecastResponse {
                 TODO("Not yet implemented")
             }
 
-            override suspend fun getDailyForecastByCityFromLocalDataBase(cityId: Int): DailyForecastResponse {
+            override suspend fun getDailyForecastByCityFromLocalDataBase(cityName: String): DailyForecastResponse {
                 TODO("Not yet implemented")
             }
 
             override suspend fun insertDailyForecastByCityToLocalDataBase(data: List<DailyForecastData>) {
-                action=true
+                action = true
             }
 
         }
@@ -78,23 +74,22 @@ class InsertDailyForecastByCityInRoomUseCaseTest {
     @Test
     fun `invokeFromLocalData return false`() = runBlocking {
 
-        var action=true
+        var action = true
 
         //arrange
         val repo = object : DailyForecastRepo {
             override suspend fun getDailyForecastByCityFromRemote(
-                latitude: Double,
-                longitude: Double
+                cityName: String
             ): DailyForecastResponse {
                 TODO("Not yet implemented")
             }
 
-            override suspend fun getDailyForecastByCityFromLocalDataBase(cityId: Int): DailyForecastResponse {
+            override suspend fun getDailyForecastByCityFromLocalDataBase(cityName: String): DailyForecastResponse {
                 TODO("Not yet implemented")
             }
 
             override suspend fun insertDailyForecastByCityToLocalDataBase(data: List<DailyForecastData>) {
-                action=false
+                action = false
             }
 
         }

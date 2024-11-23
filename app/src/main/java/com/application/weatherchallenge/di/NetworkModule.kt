@@ -17,7 +17,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val TIMEOUT = 30L
+    private const val TIMEOUT = 1L //todo
     const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
 
     @Provides

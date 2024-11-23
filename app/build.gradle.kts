@@ -72,6 +72,7 @@ dependencies {
 
     //dagger hilt
     implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
 
     // Retrofit
@@ -81,7 +82,7 @@ dependencies {
 
     // For ViewModel
     implementation(libs.androidx.lifecycle.extensions)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+//    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     //multi size ui
     implementation(libs.sdp.android)
@@ -97,6 +98,10 @@ dependencies {
 
     //noinspection UseTomlInstead
     implementation ("com.android.support:multidex:1.0.3")
+
+    //
+    implementation (libs.androidx.datastore.preferences)
+    implementation(libs.coil.compose)
 
     implementation(project(":domain"))
     implementation(project(":data"))

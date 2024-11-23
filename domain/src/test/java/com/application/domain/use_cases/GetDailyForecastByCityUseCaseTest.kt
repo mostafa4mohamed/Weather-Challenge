@@ -18,11 +18,10 @@ class GetDailyForecastByCityUseCaseTest {
         //arrange
         val repo = object : DailyForecastRepo {
             override suspend fun getDailyForecastByCityFromRemote(
-                latitude: Double,
-                longitude: Double
+                cityName: String
             ): DailyForecastResponse = list
 
-            override suspend fun getDailyForecastByCityFromLocalDataBase(cityId: Int): DailyForecastResponse {
+            override suspend fun getDailyForecastByCityFromLocalDataBase(cityName: String): DailyForecastResponse {
                 TODO("Not yet implemented")
             }
 
@@ -34,7 +33,7 @@ class GetDailyForecastByCityUseCaseTest {
         val useCase = GetDailyForecastByCityUseCase(repo)
 
         //act
-        val result = useCase.invokeFromRemote(0.0, 0.0)
+        val result = useCase.invokeFromRemote("")
 
         //assert
         val expected = list
@@ -48,11 +47,10 @@ class GetDailyForecastByCityUseCaseTest {
         //arrange
         val repo = object : DailyForecastRepo {
             override suspend fun getDailyForecastByCityFromRemote(
-                latitude: Double,
-                longitude: Double
+                cityName: String
             ): DailyForecastResponse? = null
 
-            override suspend fun getDailyForecastByCityFromLocalDataBase(cityId: Int): DailyForecastResponse {
+            override suspend fun getDailyForecastByCityFromLocalDataBase(cityName: String): DailyForecastResponse {
                 TODO("Not yet implemented")
             }
 
@@ -64,7 +62,7 @@ class GetDailyForecastByCityUseCaseTest {
         val useCase = GetDailyForecastByCityUseCase(repo)
 
         //act
-        val result = useCase.invokeFromRemote(0.0, 0.0)
+        val result = useCase.invokeFromRemote("")
 
         //assert
         assertNull(result)
@@ -79,13 +77,12 @@ class GetDailyForecastByCityUseCaseTest {
         //arrange
         val repo = object : DailyForecastRepo {
             override suspend fun getDailyForecastByCityFromRemote(
-                latitude: Double,
-                longitude: Double
+                cityName: String
             ): DailyForecastResponse {
                 throw UnsupportedOperationException()
             }
 
-            override suspend fun getDailyForecastByCityFromLocalDataBase(cityId: Int): DailyForecastResponse {
+            override suspend fun getDailyForecastByCityFromLocalDataBase(cityName: String): DailyForecastResponse {
                 TODO("Not yet implemented")
             }
 
@@ -97,7 +94,7 @@ class GetDailyForecastByCityUseCaseTest {
         val useCase = GetDailyForecastByCityUseCase(repo)
 
         //act
-        val result = useCase.invokeFromRemote(0.0, 0.0)
+        val result = useCase.invokeFromRemote("")
 
         //assert
         val expected = list
@@ -112,13 +109,12 @@ class GetDailyForecastByCityUseCaseTest {
         //arrange
         val repo = object : DailyForecastRepo {
             override suspend fun getDailyForecastByCityFromRemote(
-                latitude: Double,
-                longitude: Double
+                cityName: String
             ): DailyForecastResponse {
                 TODO("Not yet implemented")
             }
 
-            override suspend fun getDailyForecastByCityFromLocalDataBase(cityId: Int): DailyForecastResponse =
+            override suspend fun getDailyForecastByCityFromLocalDataBase(cityName: String): DailyForecastResponse =
                 list
 
             override suspend fun insertDailyForecastByCityToLocalDataBase(data: List<DailyForecastData>) {
@@ -129,7 +125,7 @@ class GetDailyForecastByCityUseCaseTest {
         val useCase = GetDailyForecastByCityUseCase(repo)
 
         //act
-        val result = useCase.invokeFromLocalData(0)
+        val result = useCase.invokeFromLocalData("")
 
         //assert
         val expected = list
@@ -143,13 +139,12 @@ class GetDailyForecastByCityUseCaseTest {
         //arrange
         val repo = object : DailyForecastRepo {
             override suspend fun getDailyForecastByCityFromRemote(
-                latitude: Double,
-                longitude: Double
+                cityName: String
             ): DailyForecastResponse {
                 TODO("Not yet implemented")
             }
 
-            override suspend fun getDailyForecastByCityFromLocalDataBase(cityId: Int): DailyForecastResponse? =
+            override suspend fun getDailyForecastByCityFromLocalDataBase(cityName: String): DailyForecastResponse? =
                 null
 
             override suspend fun insertDailyForecastByCityToLocalDataBase(data: List<DailyForecastData>) {
@@ -160,7 +155,7 @@ class GetDailyForecastByCityUseCaseTest {
         val useCase = GetDailyForecastByCityUseCase(repo)
 
         //act
-        val result = useCase.invokeFromLocalData(0)
+        val result = useCase.invokeFromLocalData("")
 
         //assert
         assertNull(result)
@@ -175,13 +170,12 @@ class GetDailyForecastByCityUseCaseTest {
         //arrange
         val repo = object : DailyForecastRepo {
             override suspend fun getDailyForecastByCityFromRemote(
-                latitude: Double,
-                longitude: Double
+                cityName: String
             ): DailyForecastResponse {
                 TODO("Not yet implemented")
             }
 
-            override suspend fun getDailyForecastByCityFromLocalDataBase(cityId: Int): DailyForecastResponse {
+            override suspend fun getDailyForecastByCityFromLocalDataBase(cityName: String): DailyForecastResponse {
                 throw UnsupportedOperationException()
             }
 
@@ -193,7 +187,7 @@ class GetDailyForecastByCityUseCaseTest {
         val useCase = GetDailyForecastByCityUseCase(repo)
 
         //act
-        val result = useCase.invokeFromLocalData(0)
+        val result = useCase.invokeFromLocalData("")
 
         //assert
         val expected = list

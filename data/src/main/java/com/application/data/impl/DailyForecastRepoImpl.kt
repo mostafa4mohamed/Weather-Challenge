@@ -14,15 +14,14 @@ class DailyForecastRepoImpl(
 ) : DailyForecastRepo {
 
     override suspend fun getDailyForecastByCityFromRemote(
-        latitude: Double,
-        longitude: Double,
+        cityName:String
     ): DailyForecastResponse =
-        apis.getDailyForecastByCityFromRemote(latitude, longitude)
+        apis.getDailyForecastByCityFromRemote(cityName)
 
     override suspend fun getDailyForecastByCityFromLocalDataBase(
-        cityId: Int
+        cityName:String
     ): DailyForecastResponse =
-        DailyForecastResponse(list = dao.getDailyForecastByCity(cityId).map { it.toDomainEntity() })
+        DailyForecastResponse(list = dao.getDailyForecastByCity(cityName).map { it.toDomainEntity() })
 
     override suspend fun insertDailyForecastByCityToLocalDataBase(data: List<DailyForecastData>) {
         dao.insert(data.map { it.toRoomEntity() })

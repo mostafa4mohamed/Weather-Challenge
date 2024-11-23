@@ -20,6 +20,7 @@ data class City(
 )
 
 data class DailyForecastData(
+    var city_name: String? = null,
     var city_id: Int? = null,
     val clouds: Clouds? = null,
     val dt: Int? = null,

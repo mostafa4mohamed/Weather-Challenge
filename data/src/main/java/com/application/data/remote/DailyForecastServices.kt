@@ -9,8 +9,7 @@ interface DailyForecastServices {
 
     @GET("forecast")
     suspend fun getDailyForecastByCityFromRemote(
-        @Query("lat") latitude: Double,
-        @Query("lon") longitude: Double,
+        @Query("q") city_name: String,
         @Query("APPID") appId: String = Constants.DAILY_FORECAST_APP_ID
     ): DailyForecastResponse
 

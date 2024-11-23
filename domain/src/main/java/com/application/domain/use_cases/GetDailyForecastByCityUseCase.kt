@@ -5,12 +5,11 @@ import com.application.domain.repo.DailyForecastRepo
 class GetDailyForecastByCityUseCase (private val repo: DailyForecastRepo) {
 
     suspend fun invokeFromRemote(
-        latitude: Double,
-        longitude: Double,
-    ) = repo.getDailyForecastByCityFromRemote(latitude, longitude)
+        cityName:String
+    ) = repo.getDailyForecastByCityFromRemote(cityName)
 
     suspend fun invokeFromLocalData(
-        cityId:Int,
-    ) = repo.getDailyForecastByCityFromLocalDataBase(cityId)
+        cityName:String
+    ) = repo.getDailyForecastByCityFromLocalDataBase(cityName)
 
 }
