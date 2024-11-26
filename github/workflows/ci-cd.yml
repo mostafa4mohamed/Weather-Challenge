@@ -22,8 +22,8 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Grant execution permissions for Gradle
-        run: chmod +x ./gradlew
+#      - name: Grant execution permissions for Gradle
+#        run: chmod +x ./gradlew
 
       - name: Run Lint
         run: ./gradlew lint
