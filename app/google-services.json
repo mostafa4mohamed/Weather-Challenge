@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1067500989513",
+    "project_id": "weatherchallenge-36468",
+    "storage_bucket": "weatherchallenge-36468.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067500989513:android:339ed591197ef93cfa6398",
+        "android_client_info": {
+          "package_name": "com.application.weatherchallenge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZDEffYRwF0PuQ8gDr4VtJ11XoUvGAiWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
