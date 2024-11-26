@@ -1,9 +1,25 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.hilt.android)
+    alias(libs.plugins.google.firebase.appdistribution)
+    alias(libs.plugins.google.gms.google.services)
 }
+
+
+// Create a variable called keystorePropertiesFile, and initialize it to your
+// keystore.properties file, in the rootProject folder.
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+
+// Initialize a new Properties() object called keystoreProperties.
+val keystoreProperties = Properties()
+
+// Load your keystore.properties file into the keystoreProperties object.
+keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
 android {
     namespace = "com.application.weatherchallenge"
@@ -29,8 +45,34 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+//            signingConfig = signingConfigs.getByName("config")
+
+            applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                    val appName = "WeatherChallenge"
+                    val versionName = variant.versionName
+                    val versionCode = variant.versionCode
+                    val buildType = variant.buildType.name
+                    val fileName = "${appName}_v${versionName}_${versionCode}_${buildType}.apk"
+
+                    output.outputFile.renameTo(File(output.outputFile.parentFile, fileName))
+                    false
+                }
+            }
+
         }
     }
+
+    signingConfigs {
+        create("config") {
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -97,10 +139,10 @@ dependencies {
     ksp(libs.room.compiler)
 
     //noinspection UseTomlInstead
-    implementation ("com.android.support:multidex:1.0.3")
+    implementation("com.android.support:multidex:1.0.3")
 
     //
-    implementation (libs.androidx.datastore.preferences)
+    implementation(libs.androidx.datastore.preferences)
     implementation(libs.coil.compose)
 
     implementation(project(":domain"))

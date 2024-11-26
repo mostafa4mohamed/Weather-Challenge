@@ -10,8 +10,39 @@ desc "Prepare Android Debug Build"
 lane :build_debug_android do
 gradle(
 task: "assembleDebug",
-
 )
+end
+
+desc "Prepare Android Release Build"
+lane :build_release_android do
+gradle(
+task: "assembleRelease",
+)
+end
+
+desc "Prepare Android Release app bundle"
+lane :build_bundle_release_android do
+gradle(
+  task: "bundle",
+  build_type: "Release",
+  print_command: false,
+  properties: {
+    "android.injected.signing.store.file" => "C:/Users/mosta/AndroidStudioProjects/WeatherChallenge/app/WeatherChallenge.jks",
+    "android.injected.signing.store.password" => "123456",
+    "android.injected.signing.key.alias" => "key0",
+    "android.injected.signing.key.password" => "123456",
+  }
+)
+end
+
+desc "Prepare Android Build & Distribute to Firebase App distribution"
+lane :beta_app_distribution do
+build_debug_android
+    firebase_app_distribution(
+        app: "1:1067500989513:android:339ed591197ef93cfa6398",
+        firebase_cli_token: "1//03ql96Kdw1BB_CgYIARAAGAMSNwF-L9IrHY9t-HCiIVTuE7r544sTDBFIEn7FsbBFG6jB28jDK_XiUU6c_C1vIw6u8M2Czq4SZDk",
+        groups: "Testers",
+    )
 end
 
 end
