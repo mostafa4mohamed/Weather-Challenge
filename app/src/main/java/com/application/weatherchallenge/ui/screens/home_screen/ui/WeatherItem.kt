@@ -21,7 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.application.weatherchallenge.R
-import com.application.weatherchallenge.utils.Utils.fillImageUrl
+import com.application.weatherutils.WeatherFormatter.getFillImageUrl
 import com.intuit.sdp.R.dimen
 
 @Composable
@@ -54,7 +54,7 @@ fun WeatherInfoCard(
 @Composable
 fun RowScope.MyImage(icon: String) {
     Image(
-        painter = rememberImagePainter(data = icon.fillImageUrl()),
+        painter = rememberImagePainter(data = icon.getFillImageUrl()),
         contentDescription = stringResource(id = R.string.weather_icon),
         modifier = Modifier
             .size(dimensionResource(id = dimen._48sdp))

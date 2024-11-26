@@ -16,8 +16,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            HomeScreen()
-            //test.
+            WeatherChallengeTheme() {
+                HomeScreen()
+                //test.
+            }
         }
     }
 }

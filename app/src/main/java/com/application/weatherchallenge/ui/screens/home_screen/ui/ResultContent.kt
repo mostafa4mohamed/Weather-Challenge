@@ -1,6 +1,7 @@
 package com.application.weatherchallenge.ui.screens.home_screen.ui
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,6 +12,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,8 +28,7 @@ import com.application.weatherchallenge.R
 import com.application.weatherchallenge.state.NetworkState
 import com.application.weatherchallenge.ui.screens.home_screen.HomeViewModel
 import com.application.weatherchallenge.utils.DateUtils.dateFormat
-import com.application.weatherchallenge.utils.Utils.convertFromKelvinToCelsius
-import com.application.weatherchallenge.utils.Utils.format2Digits
+import com.application.weatherutils.WeatherFormatter.formatTemperatureToCelsius
 
 
 @SuppressLint("CoroutineCreationDuringComposition")
@@ -41,10 +42,12 @@ fun HomeContent(
     val resultState =
         viewModel.getDailyForecastStateFlow.collectAsState().value as NetworkState.Result
 
+    val backgroundColor = MaterialTheme.colorScheme.background
 
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(backgroundColor)
     ) {
 
         SearchBar(inputText, onButtonClick)
@@ -81,7 +84,7 @@ fun HomeContent(
             items(resultState.response!!.list!!) { data ->
 
                 val date = "${data.dt_txt.dateFormat()}"
-                val temp = data.main?.temp?.convertFromKelvinToCelsius().format2Digits() + " ℃"
+                val temp = data.main?.temp?.formatTemperatureToCelsius() ?: ""
                 val humidity = "${data.main?.humidity} %"
                 val description = if (!data.weather.isNullOrEmpty())
                     data.weather?.first()?.description ?: ""

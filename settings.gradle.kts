@@ -10,6 +10,9 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+    plugins {
+        kotlin("jvm") version "1.9.22"
+    }
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -23,3 +26,4 @@ rootProject.name = "Weather Challenge"
 include(":app")
 include(":data")
 include(":domain")
+include(":weatherutils")

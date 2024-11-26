@@ -1,13 +1,22 @@
-package com.application.weatherchallenge.utils
+package com.application.weatherutils
 
-import com.application.weatherchallenge.utils.Utils.convertFromKelvinToCelsius
-import com.application.weatherchallenge.utils.Utils.fillImageUrl
-import com.application.weatherchallenge.utils.Utils.format2Digits
-
+import com.application.weatherutils.WeatherFormatter.convertFromKelvinToCelsius
+import com.application.weatherutils.WeatherFormatter.format2Digits
+import com.application.weatherutils.WeatherFormatter.formatTemperatureToCelsius
+import com.application.weatherutils.WeatherFormatter.getFillImageUrl
 import org.junit.Test
 
-class UtilsTest {
+class WeatherFormatterTest {
 
+    @Test
+    fun formatTemperatureToCelsius() {
+
+        val result=300.6543.formatTemperatureToCelsius()
+
+        val expected="27.50 ℃"
+
+        assert(result == expected)
+    }
 
     @Test
     fun convertFromKelvinToCelsius() {
@@ -21,11 +30,11 @@ class UtilsTest {
     }
 
     @Test
-    fun convertIconToFillUrl() {
+    fun getFillImageUrl() {
 
         val icon="icon"
 
-        val result = icon.fillImageUrl()
+        val result = icon.getFillImageUrl()
 
         val expected = "https://openweathermap.org/img/wn/icon@2x.png"
 

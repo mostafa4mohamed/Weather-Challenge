@@ -1,5 +1,6 @@
 package com.application.weatherchallenge.ui.screens.home_screen.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -16,9 +17,13 @@ import com.application.weatherchallenge.R
 fun InitContent(
     inputText: MutableState<String>,
     onButtonClick:()->Unit) {
+
+    val backgroundColor = MaterialTheme.colorScheme.background
+
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .background(backgroundColor)
     ) {
 
         SearchBar(inputText, onButtonClick)
