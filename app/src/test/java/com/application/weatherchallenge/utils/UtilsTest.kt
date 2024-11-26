@@ -27,7 +27,7 @@ class UtilsTest {
 
         val result = icon.fillImageUrl()
 
-        val expected = "https://openweathermap.org/img/wn/icon@2x.png"
+        val expected = "https://openweathermap.org/img/wn/icon@2x.png0"
 
         assert(result == expected)
 
