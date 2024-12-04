@@ -25,6 +25,9 @@ jobs:
       - name: Build APK
         run: ./gradlew assembleRelease --warning-mode all
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       # Deploy APK to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
